@@ -1,4 +1,5 @@
 name: Lint
+run-name: ${{ github.actor }}'s Python linter
 
 on:
   # Trigger the workflow on push or pull request,
