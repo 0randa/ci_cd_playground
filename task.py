@@ -23,6 +23,19 @@ def get_tasks() -> list[str]:
     return ret_arr
 
 
+def add_task(name) -> None:
+    task_list = []
+
+    if not os.path.exists(TASK_DATA_PATH) or os.path.getsize(TASK_DATA_PATH) == 0:
+        task_list.append({"id": 1, "name": name})
+    else:
+        with open(TASK_DATA_PATH, "r") as f:
+            task_list = json.loads(f.read())
+            task_list.append({"id": len(task_list) + 1, "name": name})
+
+    with open(TASK_DATA_PATH, "w") as f:
+        f.write(json.dumps(task_list))
+
+
 if __name__ == "__main__":
-    for t in get_tasks():
-        print(t)
+    add_task("yoo")
